@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>WeJapa Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header"><h1>WeJapa Weather App By aosimeon</h1></header>
+
+        <main>
+            <form method="post" class="weather-search-form">
+                <label for="location">Location</label>
+                <input type="text" id="location" class="location" name="location" placeholder="Enter Location">
+                <button type="submit"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                </button>
+            </form>
+
+            <div class="results">
+                <div class="roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                <div class="location-info">
+                    <p class="country"></p>
+                    <p class="name"></p>
+                    <p class="lat"></p>
+                    <p class="lon"></p>
+                    <p class="weather"></p>
+                    <p class="weather-desc"></p>
+                    <p class="temp"></p>
+                    <p class="pressure"></p>
+                    <p class="humidity"></p>
+                </div>
+                <div id="map"></div>
+            </div>
+        </main>
+    </div>
+    <!--
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAklJh3iacrsQEHjQPgHZ97lrxN2D7Okhw"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+    -->
+    <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size:1rem;
+  background: rgb(221,44,0);
+  background: linear-gradient(315deg, #ecfafc 0%, #def6f9 120%);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Alata', sans-serif;
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+  margin: 1.5rem auto;
+}
+
+/* Weather form Styling */
+.weather-search-form {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.weather-search-form label {
+  display: none;
+}
+
+.weather-search-form input {
+  border-width: 2px 0 2px 2px;
+  border-style: solid;
+  border-color: #5bd4e3;
+  background: #cff3f7;
+  width: 40%;
+  height: 3rem;
+  padding-left: 1rem;
+  font-size: 1.3rem;
+  color: #3b3b3b;
+  caret-color: #ff5722;
+  border-radius: 10px 0 0 0;
+}
+
+.weather-search-form input::placeholder {
+  color: #3b3b3b;
+  font-size: 1.3rem;
+}
+
+.weather-search-form button {
+  color: #ff5722;
+  border-width: 2px 2px 2px 0;
+  border-style: solid;
+  border-color: #5bd4e3;
+  background: #cff3f7;
+  font-size: 2rem;
+  width: 3rem;
+  min-height: 3rem;
+  margin-left: -5px;
+  vertical-align: bottom;
+  border-radius: 0 0 10px 0;
+}
+
+.weather-search-form button:hover {
+  cursor: pointer;
+}
+
+/* Location Results Styling */
+.results {
+  position: relative;
+  height: 50vh;
+}
+
+.location-info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: -2;
+  display: flex;
+  flex-flow: row wrap;
+  border: 2px solid transparent;
+  border-radius: 5px 0 5px 0;
+  padding: 1.5rem;
+  transition: all .35s ease-in-out;
+  transition: color .35s ease-in-out 0.37s;
+}
+
+.country, .name, .lat, .lon, .weather, .pressure, .humidity {
+  flex-basis: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.weather-desc {
+  flex-basis: 100%;
+  margin-bottom: 1.5rem;
+}
+.temp {
+  flex-basis: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Map */
+/*#map {*/
+/*  margin: 0 auto;*/
+/*  margin-top: 2rem;*/
+/*  width: 80%;*/
+/*  height: 400px;*/
+/*}*/
+
+/* Spinner */
+.lds-roller {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+}
+
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff5722;
+  margin: -4px 0 0 -4px;
+  transition: all 3s ease-in;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

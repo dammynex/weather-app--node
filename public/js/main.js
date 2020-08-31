@@ -40,12 +40,17 @@ weatherSearchForm.addEventListener('submit',e => {
   // Sending the location to the server
   fetch('./post_location', { method: 'POST', body: JSON.stringify(location) })
     .then(res => res.json())
-    .then(data => {
-      setTimeout(() => {
-        // Getting the location from the server
+    .then(() => {
+
+      const get_location_data = () => {
         fetch('./get_location_data')
           .then(res => res.json())
           .then(data => {
+            console.log(data)
+            if(data.message === 'waiting') {
+              return setTimeout(() => get_location_data(), 3000)
+            }
+
             // These are for the transition effects
             locationInfo.style.color = '#fff';
             locationInfo.style.boxShadow = '0 8px 6px -6px #115962';
@@ -54,8 +59,10 @@ weatherSearchForm.addEventListener('submit',e => {
             results.classList.remove('lds-roller');
             updatePage(data);
           });
-      }, 3000); //I waited for 3 seconds because of the asynchronous operation going on in the server to get the location. Tried all I could to fix it. I'll probably fix this in the future.
-    });
+      }
+
+      get_location_data()
+});
 
 });
 

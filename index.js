@@ -6,6 +6,31 @@ const port = 3000;
 const apiKey = '8f6c90b85a72bcbe81565f1d59f78279';
 let location = '';
 let locationData;
+let loading = false
+
+const make_request = () => {
+  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
+  loading = true
+  http.get(apiUrl, response => {
+    response.setEncoding("utf8");
+    let body = "";
+    response.on("data", data => {
+      body += data;
+    });
+    response.on("end", () => {
+      loading = false
+      locationData = body;
+      console.log(locationData);
+    });
+    response.on('error', (error) => {
+      reject(error);
+    });
+  })
+  .on('error', e => {
+    loading = false
+    console.log(e)
+  })
+}
 
 http.createServer((req, res) => {
   // Getting static assets
@@ -23,38 +48,19 @@ http.createServer((req, res) => {
       location = JSON.parse(body).location;
       console.log(location);
       // Trying to make the getting of the location data synchronous here, but it didnt work
-      function getData() {
-        return new Promise((resolve, reject) => {
-          // Get weather location info
-          const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
-          http.get(apiUrl, response => {
-            response.setEncoding("utf8");
-            let body = "";
-            response.on("data", data => {
-              body += data;
-            });
-            response.on("end", () => {
-              locationData = body;
-              console.log(locationData);
-              resolve();
-            });
-            response.on('error', (error) => {
-              reject(error);
-            });
-          });
-        });
-      }
-
-      async function getLocationData() {
-        await getData();
-      }
-
-      getLocationData();
-      res.end(JSON.stringify({"message": "location recieved"}));
+      make_request()
+      res.end(JSON.stringify({message: "location recieved"}));
     });
   } else if (req.method === 'GET' && req.url === '/get_location_data') { // Match url for sending location data
     req.on('end', () => {
+      
       res.writeHead(200, { 'Content-Type': 'application/json' });
+
+      if(!locationData) {
+        if(!loading) make_request()
+        return res.end(JSON.stringify({ 'message': 'waiting'}))
+      }
+      
       res.end(locationData);
     })
   }
